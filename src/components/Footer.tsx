@@ -1,52 +1,43 @@
-import { Link } from "react-router-dom";
-import { Facebook, Instagram, Linkedin, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export const Footer = () => (
-  <footer className="border-t border-border/50 bg-card/30 mt-24">
-    <div className="container py-16 grid gap-12 md:grid-cols-4">
-      <div className="space-y-4">
-        <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg gradient-bg" />
-          <span className="text-lg font-bold">Gilco<span className="gradient-text">Digital</span></span>
-        </div>
-        <p className="text-sm text-muted-foreground">Helping brands grow through powerful digital marketing, web development, and creative strategy.</p>
-        <div className="flex gap-3">
-          {[Facebook, Instagram, Linkedin, Twitter].map((Icon, i) => (
-            <a key={i} href="#" className="h-9 w-9 rounded-full bg-muted flex items-center justify-center hover:bg-primary transition-colors">
-              <Icon className="h-4 w-4" />
-            </a>
-          ))}
-        </div>
+  <footer className="bg-secondary mt-0">
+    <div className="container py-16 grid gap-10 md:grid-cols-4">
+      <div>
+        <h4 className="font-bold mb-3">Fb. / Ig.</h4>
+        <p className="font-bold mt-6">Inquiries</p>
+        <p className="text-sm text-muted-foreground mt-3">Got a question for us?</p>
+        <p className="font-bold text-sm mt-1">Info@gilcodigital.com</p>
       </div>
       <div>
-        <h4 className="font-semibold mb-4">Quick Links</h4>
-        <ul className="space-y-2 text-sm text-muted-foreground">
-          <li><Link to="/" className="hover:text-primary">Home</Link></li>
-          <li><Link to="/about" className="hover:text-primary">About</Link></li>
-          <li><Link to="/services" className="hover:text-primary">Services</Link></li>
-          <li><Link to="/contact" className="hover:text-primary">Contact</Link></li>
-        </ul>
+        <h4 className="font-bold mb-3">Vancouver</h4>
       </div>
       <div>
-        <h4 className="font-semibold mb-4">Services</h4>
-        <ul className="space-y-2 text-sm text-muted-foreground">
-          <li>Digital Marketing</li>
-          <li>Web Development</li>
-          <li>SEO Optimization</li>
-          <li>Brand Strategy</li>
-        </ul>
+        <h4 className="font-bold mb-3">Work inquiries</h4>
+        <p className="text-sm text-muted-foreground">Interested in working with us?</p>
+        <p className="font-bold text-sm mt-1">info@gilcodigital.com</p>
+        <p className="font-bold mt-6">Career</p>
+        <p className="text-sm text-muted-foreground mt-3">Looking for a job opportunity?</p>
+        <p className="font-bold text-sm mt-1">See open positions</p>
       </div>
       <div>
-        <h4 className="font-semibold mb-4">Contact</h4>
-        <ul className="space-y-3 text-sm text-muted-foreground">
-          <li className="flex gap-2"><Mail className="h-4 w-4 text-primary" /> hello@gilcodigital.com</li>
-          <li className="flex gap-2"><Phone className="h-4 w-4 text-primary" /> +1 (555) 123-4567</li>
-          <li className="flex gap-2"><MapPin className="h-4 w-4 text-primary" /> Global · Remote-first</li>
-        </ul>
+        <h4 className="font-bold mb-4">Sign up for the newsletter</h4>
+        <form className="flex gap-2">
+          <Input placeholder="Email address" className="bg-background" />
+          <Button type="submit" className="bg-dark text-white hover:bg-dark/90">Sign Up</Button>
+        </form>
+        <label className="flex gap-2 mt-4 text-xs text-muted-foreground">
+          <input type="checkbox" className="mt-0.5" />
+          <span>I'm okay with getting emails and having that activity tracked to improve my experience.</span>
+        </label>
       </div>
     </div>
-    <div className="border-t border-border/50 py-6 text-center text-sm text-muted-foreground">
-      © {new Date().getFullYear()} GilcoDigital. All rights reserved.
+    <div className="border-t border-border">
+      <div className="container py-5 flex flex-wrap gap-3 justify-between text-xs text-muted-foreground">
+        <span>© {new Date().getFullYear()}, GilcoDigital. All rights reserved.</span>
+        <span>Privacy & Cookie Policy | Terms of Service</span>
+      </div>
     </div>
   </footer>
 );
