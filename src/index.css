@@ -4,42 +4,41 @@
 
 @layer base {
   :root {
-    --background: 222 47% 5%;
-    --foreground: 0 0% 98%;
+    --background: 0 0% 100%;
+    --foreground: 222 20% 10%;
 
-    --card: 222 40% 8%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 20% 10%;
 
-    --popover: 222 40% 8%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 20% 10%;
 
-    --primary: 18 95% 55%;
+    --primary: 354 78% 56%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 30 100% 60%;
+    --primary-glow: 354 85% 65%;
 
-    --secondary: 200 95% 55%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 222 20% 10%;
 
-    --muted: 222 30% 14%;
-    --muted-foreground: 215 20% 70%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
 
-    --accent: 200 95% 55%;
+    --accent: 200 95% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 222 30% 18%;
-    --input: 222 30% 16%;
-    --ring: 18 95% 55%;
+    --border: 220 13% 91%;
+    --input: 220 13% 96%;
+    --ring: 354 78% 56%;
 
-    --radius: 0.75rem;
+    --dark: 0 0% 7%;
+    --dark-foreground: 0 0% 98%;
 
-    --gradient-primary: linear-gradient(135deg, hsl(18 95% 55%), hsl(30 100% 60%));
-    --gradient-hero: linear-gradient(135deg, hsl(222 47% 5% / 0.85), hsl(222 47% 5% / 0.5));
-    --gradient-accent: linear-gradient(135deg, hsl(18 95% 55%), hsl(200 95% 55%));
-    --shadow-glow: 0 20px 60px -15px hsl(18 95% 55% / 0.5);
-    --shadow-elegant: 0 10px 40px -10px hsl(222 80% 2% / 0.6);
+    --radius: 0.5rem;
+
+    --gradient-primary: linear-gradient(135deg, hsl(354 78% 56%), hsl(354 85% 65%));
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
@@ -54,18 +53,19 @@
   }
   h1, h2, h3, h4 {
     @apply font-bold tracking-tight;
+    letter-spacing: -0.02em;
   }
 }
 
 @layer utilities {
-  .gradient-text {
-    @apply bg-clip-text text-transparent;
-    background-image: var(--gradient-primary);
+  .text-brand {
+    color: hsl(var(--primary));
   }
-  .gradient-bg {
-    background-image: var(--gradient-primary);
+  .bg-brand {
+    background-color: hsl(var(--primary));
   }
-  .glow {
-    box-shadow: var(--shadow-glow);
+  .bg-dark {
+    background-color: hsl(var(--dark));
+    color: hsl(var(--dark-foreground));
   }
 }

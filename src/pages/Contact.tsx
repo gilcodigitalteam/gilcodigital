@@ -1,82 +1,101 @@
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
+import contactHero from "@/assets/contact-hero.jpg";
 
 const Contact = () => {
-  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [form, setForm] = useState({ name: "", company: "", email: "", phone: "", subject: "", budget: "Less than 5K", details: "" });
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setTimeout(() => {
-      toast.success("Message sent! We'll get back to you within 24 hours.");
-      setForm({ name: "", email: "", subject: "", message: "" });
+      toast.success("Quote request sent! We'll get back to you within 24 hours.");
+      setForm({ name: "", company: "", email: "", phone: "", subject: "", budget: "Less than 5K", details: "" });
       setLoading(false);
     }, 800);
   };
 
   return (
     <>
-      <section className="container py-20 md:py-28 text-center">
-        <h1 className="text-4xl md:text-6xl mb-6">Get in <span className="gradient-text">Touch</span></h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Have a project in mind? We'd love to hear from you. Reach out and we'll respond within 24 hours.
-        </p>
+      {/* Hero with image */}
+      <section className="relative h-[500px] overflow-hidden">
+        <img src={contactHero} alt="" className="absolute inset-0 w-full h-full object-cover" width={1920} height={896} />
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="relative container h-full flex flex-col justify-center pt-16 text-white">
+          <button className="mb-8 self-start"><ArrowLeft className="h-5 w-5" /></button>
+          <h1 className="text-5xl md:text-7xl font-bold mb-4">Contact Us</h1>
+          <p className="mb-6 max-w-md">Leave us a little info, and we'll be in touch.</p>
+          <Button className="bg-primary hover:bg-primary/90 text-white rounded-md px-6 h-11 self-start">Send Us an Email</Button>
+        </div>
       </section>
 
-      <section className="container pb-20 grid lg:grid-cols-3 gap-8">
-        <div className="space-y-4">
-          {[
-            { icon: Mail, title: "Email", val: "hello@gilcodigital.com" },
-            { icon: Phone, title: "Phone", val: "+1 (555) 123-4567" },
-            { icon: MapPin, title: "Location", val: "Global · Remote-first" },
-          ].map((c) => (
-            <Card key={c.title}>
-              <CardContent className="p-6 flex gap-4 items-center">
-                <div className="h-12 w-12 rounded-lg gradient-bg flex items-center justify-center shrink-0">
-                  <c.icon className="h-5 w-5 text-primary-foreground" />
-                </div>
-                <div>
-                  <div className="text-sm text-muted-foreground">{c.title}</div>
-                  <div className="font-semibold">{c.val}</div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+      <section className="container py-16">
+        <p className="text-sm text-muted-foreground mb-12"><Link to="/" className="hover:text-primary">Home</Link> &gt; Contact Us</p>
+
+        <div className="grid md:grid-cols-3 gap-10 pb-12 border-b border-border">
+          <div>
+            <h3 className="text-2xl font-bold mb-6">Get in touch</h3>
+            <p className="font-bold">Work Inquiries</p>
+            <p className="font-bold mt-1">+1.604.256.9191</p>
+            <p className="text-sm text-muted-foreground mt-6">Assistance hours:<br />Monday – Friday<br />9 am to 6 pm PST</p>
+          </div>
+          <div>
+            <h3 className="text-2xl font-bold mb-6">Address</h3>
+            <p className="text-muted-foreground">Vancouver, Canada</p>
+          </div>
+          <div>
+            <h3 className="text-2xl font-bold mb-6">Social media</h3>
+            <p className="text-muted-foreground">Instagram</p>
+          </div>
         </div>
 
-        <Card className="lg:col-span-2">
-          <CardContent className="p-8">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-sm font-medium mb-2 block">Name</label>
-                  <Input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Your name" />
-                </div>
-                <div>
-                  <label className="text-sm font-medium mb-2 block">Email</label>
-                  <Input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="you@example.com" />
-                </div>
-              </div>
-              <div>
-                <label className="text-sm font-medium mb-2 block">Subject</label>
-                <Input required value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} placeholder="How can we help?" />
-              </div>
-              <div>
-                <label className="text-sm font-medium mb-2 block">Message</label>
-                <Textarea required rows={6} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Tell us about your project..." />
-              </div>
-              <Button type="submit" disabled={loading} size="lg" className="gradient-bg border-0 w-full md:w-auto">
-                {loading ? "Sending..." : <>Send Message <Send className="ml-1 h-4 w-4" /></>}
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
+        <form onSubmit={handleSubmit} className="pt-12 space-y-8">
+          <div className="grid md:grid-cols-3 gap-6">
+            <div>
+              <label className="text-sm font-bold mb-2 block">Name (required)</label>
+              <Input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Your name" className="h-12 bg-secondary border-0" />
+            </div>
+            <div>
+              <label className="text-sm font-bold mb-2 block">Company (required)</label>
+              <Input required value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} placeholder="Your company name" className="h-12 bg-secondary border-0" />
+            </div>
+            <div>
+              <label className="text-sm font-bold mb-2 block">Email (required)</label>
+              <Input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="Your working email" className="h-12 bg-secondary border-0" />
+            </div>
+            <div>
+              <label className="text-sm font-bold mb-2 block">Phone (optional)</label>
+              <Input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="Your actual phone number" className="h-12 bg-secondary border-0" />
+            </div>
+            <div>
+              <label className="text-sm font-bold mb-2 block">Subject (optional)</label>
+              <Input value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} placeholder="Choose a subject" className="h-12 bg-secondary border-0" />
+            </div>
+            <div>
+              <label className="text-sm font-bold mb-2 block">Choose a Budget (USD)</label>
+              <select value={form.budget} onChange={(e) => setForm({ ...form, budget: e.target.value })} className="h-12 w-full rounded-md bg-secondary border-0 px-3 text-sm">
+                <option>Less than 5K</option>
+                <option>5K - 10K</option>
+                <option>10K - 25K</option>
+                <option>25K - 50K</option>
+                <option>50K+</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label className="text-sm font-bold mb-2 block">Project details</label>
+            <Textarea rows={6} value={form.details} onChange={(e) => setForm({ ...form, details: e.target.value })} placeholder="Brief project details" className="bg-secondary border-0" />
+          </div>
+          <Button type="submit" disabled={loading} className="bg-dark text-white hover:bg-dark/90 rounded-md px-6 h-12">
+            {loading ? "Sending..." : "Get a Quote"}
+          </Button>
+        </form>
       </section>
     </>
   );

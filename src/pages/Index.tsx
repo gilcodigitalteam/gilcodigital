@@ -1,116 +1,195 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Rocket, Target, TrendingUp, Code2, Search, Megaphone, Star } from "lucide-react";
+import { ArrowRight, Play, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import hero from "@/assets/hero.jpg";
+import blob from "@/assets/home-blob.png";
+import studio from "@/assets/home-studio.jpg";
+import stickers from "@/assets/project-stickers.jpg";
+import grafico from "@/assets/project-grafico.jpg";
+import app from "@/assets/project-app.jpg";
+import card from "@/assets/project-card.jpg";
 
-const services = [
-  { icon: Megaphone, title: "Digital Marketing", desc: "Data-driven campaigns that convert visitors into loyal customers." },
-  { icon: Code2, title: "Web Development", desc: "Lightning-fast, responsive websites built with modern tech stacks." },
-  { icon: Search, title: "SEO Optimization", desc: "Rank higher and get found by customers actively searching for you." },
-  { icon: Target, title: "Brand Strategy", desc: "Craft a brand identity that stands out and resonates deeply." },
-  { icon: TrendingUp, title: "Growth Analytics", desc: "Turn raw data into clear, actionable growth opportunities." },
-  { icon: Rocket, title: "Social Media", desc: "Build engaged communities that fuel real business outcomes." },
-];
-
-const stats = [
-  { num: "200+", label: "Happy Clients" },
-  { num: "500+", label: "Projects Delivered" },
-  { num: "10+", label: "Years Experience" },
-  { num: "98%", label: "Client Retention" },
-];
+const logos = ["tinder", "amazon", "slack", "airbnb", "intel", "Walmart", "LinkedIn", "Google", "lyft", "Spotify"];
 
 const Index = () => (
   <>
     {/* Hero */}
-    <section className="relative overflow-hidden">
-      <img src={hero} alt="" className="absolute inset-0 h-full w-full object-cover opacity-40" width={1536} height={1024} />
-      <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
-      <div className="container relative py-32 md:py-44 text-center">
-        <span className="inline-block rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium text-primary mb-6">
-          ✨ Premium Digital Agency
-        </span>
-        <h1 className="text-4xl md:text-7xl font-bold mb-6 max-w-4xl mx-auto leading-tight">
-          We Build <span className="gradient-text">Digital Experiences</span> That Drive Growth
-        </h1>
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
-          From strategy to execution, we partner with ambitious brands to design, build, and scale digital products that win.
-        </p>
-        <div className="flex flex-wrap gap-4 justify-center">
-          <Button asChild size="lg" className="gradient-bg border-0 glow"><Link to="/contact">Start a Project <ArrowRight className="ml-1" /></Link></Button>
-          <Button asChild size="lg" variant="outline"><Link to="/services">Our Services</Link></Button>
+    <section className="relative pt-32 pb-20 overflow-hidden">
+      <img src={blob} alt="" className="absolute right-0 top-10 w-[55%] max-w-[700px] -z-10" width={1024} height={1024} />
+      <div className="container">
+        <p className="text-sm text-muted-foreground mb-4">We are proud of the works we've done.</p>
+        <h1 className="text-5xl md:text-7xl font-bold leading-[1.05] mb-20">We're design<br />creators.</h1>
+        <div className="flex justify-between items-end flex-wrap gap-6">
+          <Link to="/about" className="text-sm font-semibold border-b border-foreground pb-1">More Projects</Link>
+          <div className="text-right max-w-xs">
+            <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Featured projects</p>
+            <p className="font-bold">Unique Bowls From<br />the South Pacific.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    {/* Stats */}
-    <section className="container py-20 grid grid-cols-2 md:grid-cols-4 gap-8">
-      {stats.map((s) => (
-        <div key={s.label} className="text-center">
-          <div className="text-4xl md:text-5xl font-bold gradient-text mb-2">{s.num}</div>
-          <div className="text-sm text-muted-foreground">{s.label}</div>
+    {/* Services */}
+    <section className="bg-secondary/40 py-20">
+      <div className="container grid md:grid-cols-3 gap-12">
+        <div>
+          <p className="text-xs uppercase tracking-wider text-muted-foreground mb-4">Services</p>
+          <h2 className="text-3xl md:text-4xl font-bold leading-tight">We're a team of creatives who are excited about unique ideas.</h2>
+        </div>
+        <div className="space-y-10">
+          <div>
+            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Strategy</p>
+            <h3 className="text-xl font-bold mb-2">Brand Strategy & Art Direction</h3>
+            <p className="text-sm text-muted-foreground">Creating a higher meaning and how people move through a unique and impactful campaign.</p>
+          </div>
+          <div>
+            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Production</p>
+            <h3 className="text-xl font-bold mb-2">Typography & Video Production</h3>
+            <p className="text-sm text-muted-foreground">Spaces of each sketch in the digital world can help you with overall simple & authentic.</p>
+          </div>
+        </div>
+        <div className="space-y-10">
+          <div>
+            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Design</p>
+            <h3 className="text-xl font-bold mb-2">UX/UI Design & Website Design</h3>
+            <p className="text-sm text-muted-foreground">Got a regulatory creator an enterprise such as one and the get the dot attributing and pushed.</p>
+          </div>
+          <div>
+            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Campaigns</p>
+            <h3 className="text-xl font-bold mb-2">Promo Campaigns & Content Creation</h3>
+            <p className="text-sm text-muted-foreground">Making an entire campaign to achieve a real impact.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Project tiles */}
+    <section className="grid md:grid-cols-2">
+      {[
+        { img: stickers, title: "Stickers Pack", tag: "Identity, Mockup", dark: false },
+        { img: grafico, title: "Diseño Gráfico", tag: "Branding, Identity", dark: true },
+      ].map((p) => (
+        <div key={p.title} className="relative group overflow-hidden aspect-[4/3]">
+          <img src={p.img} alt={p.title} className="w-full h-full object-cover" loading="lazy" width={800} height={600} />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <button className="h-14 w-14 rounded-full bg-white/90 flex items-center justify-center group-hover:scale-110 transition">
+              <Play className="h-5 w-5 text-foreground ml-0.5" />
+            </button>
+          </div>
+          <div className={`absolute bottom-0 left-0 p-6 ${p.dark ? "text-white" : "text-white"}`}>
+            <h3 className="text-xl font-bold">{p.title}</h3>
+            <p className="text-xs opacity-80">{p.tag}</p>
+          </div>
+        </div>
+      ))}
+      {[
+        { img: app, title: "Lifestyle App", tag: "Apps, Campaign" },
+        { img: card, title: "Credit Bank", tag: "Creative, Identity" },
+      ].map((p) => (
+        <div key={p.title} className="relative group overflow-hidden aspect-[4/3]">
+          <img src={p.img} alt={p.title} className="w-full h-full object-cover" loading="lazy" width={800} height={600} />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <button className="h-14 w-14 rounded-full bg-white/90 flex items-center justify-center group-hover:scale-110 transition">
+              <Play className="h-5 w-5 text-foreground ml-0.5" />
+            </button>
+          </div>
+          <div className="absolute bottom-0 left-0 p-6 text-white">
+            <h3 className="text-xl font-bold">{p.title}</h3>
+            <p className="text-xs opacity-80">{p.tag}</p>
+          </div>
         </div>
       ))}
     </section>
 
-    {/* Services */}
-    <section className="container py-20">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-5xl mb-4">What We <span className="gradient-text">Do</span></h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">Comprehensive digital services to help your business grow online.</p>
-      </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {services.map((s) => (
-          <Card key={s.title} className="group hover:border-primary/50 transition-all hover:-translate-y-1">
-            <CardContent className="p-8">
-              <div className="h-12 w-12 rounded-lg gradient-bg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <s.icon className="h-6 w-6 text-primary-foreground" />
-              </div>
-              <h3 className="text-xl mb-2">{s.title}</h3>
-              <p className="text-sm text-muted-foreground">{s.desc}</p>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    </section>
-
-    {/* Testimonials */}
-    <section className="container py-20">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-5xl mb-4">Client <span className="gradient-text">Love</span></h2>
-      </div>
-      <div className="grid md:grid-cols-3 gap-6">
-        {[
-          { name: "Sarah K.", role: "CEO, Bloom Co.", quote: "Our traffic tripled in 4 months. The team genuinely cares about results." },
-          { name: "Marcus T.", role: "Founder, Vexa", quote: "Best agency we've worked with. Transparent, fast, and incredibly creative." },
-          { name: "Lina M.", role: "CMO, Northwind", quote: "They turned our vision into a brand that customers truly love." },
-        ].map((t) => (
-          <Card key={t.name}>
-            <CardContent className="p-8">
-              <div className="flex gap-1 mb-4 text-primary">{[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-primary" />)}</div>
-              <p className="mb-6 italic">"{t.quote}"</p>
-              <div>
-                <div className="font-semibold">{t.name}</div>
-                <div className="text-sm text-muted-foreground">{t.role}</div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    </section>
-
-    {/* CTA */}
-    <section className="container py-20">
-      <Card className="overflow-hidden border-primary/30">
-        <CardContent className="p-12 md:p-20 text-center relative">
-          <div className="absolute inset-0 opacity-20" style={{ background: "var(--gradient-accent)" }} />
-          <div className="relative">
-            <h2 className="text-3xl md:text-5xl mb-4">Ready to grow your business?</h2>
-            <p className="text-muted-foreground mb-8 max-w-xl mx-auto">Let's talk about how we can take your brand to the next level.</p>
-            <Button asChild size="lg" className="gradient-bg border-0"><Link to="/contact">Get in Touch <ArrowRight className="ml-1" /></Link></Button>
+    {/* Capabilities with image and panel */}
+    <section className="container py-24">
+      <p className="text-xs uppercase tracking-wider text-muted-foreground mb-3">Capabilities</p>
+      <h2 className="text-4xl md:text-5xl font-bold mb-16 max-w-2xl">Creative studio with art and technologies.</h2>
+      <div className="grid md:grid-cols-2 gap-0 relative">
+        <img src={studio} alt="Studio" className="w-full aspect-[4/5] object-cover" loading="lazy" width={1024} height={1280} />
+        <div className="bg-background md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 md:w-3/5 p-8 md:p-12 shadow-xl">
+          <button className="h-12 w-12 rounded-full bg-foreground text-background flex items-center justify-center mb-6">
+            <Play className="h-4 w-4 ml-0.5" />
+          </button>
+          <h3 className="text-2xl md:text-3xl font-bold mb-6">We work in the fields of UI/UX design and art direction.</h3>
+          <div className="space-y-4">
+            <div>
+              <p className="text-sm font-bold mb-1"><span className="text-primary">— </span>Website & Mobile App Design</p>
+              <p className="text-sm text-muted-foreground">Using your own your design approaches and best tools, we will see to it that your new website will be visible, accessible, and trends rightly.</p>
+            </div>
+            <button className="flex items-center gap-2 text-sm font-semibold"><Plus className="h-4 w-4 text-primary" />Motion Graphics & Animation</button>
+            <button className="flex items-center gap-2 text-sm font-semibold"><Plus className="h-4 w-4 text-primary" />User Experience</button>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
+    </section>
+
+    {/* Logos */}
+    <section className="bg-secondary/50 py-16">
+      <div className="container grid grid-cols-3 md:grid-cols-5 gap-x-8 gap-y-10 items-center justify-items-center">
+        {logos.map((logo) => (
+          <span key={logo} className="text-xl md:text-2xl font-semibold text-muted-foreground/70 lowercase">{logo}</span>
+        ))}
+      </div>
+    </section>
+
+    {/* Steps */}
+    <section className="container py-24">
+      <p className="text-xs uppercase tracking-wider text-muted-foreground mb-8">Step 1.</p>
+      <div className="grid md:grid-cols-3 gap-12 border-t border-border pt-10">
+        {[
+          { title: "User experience and brand strategy preparing.", desc: "Professional details with graphic problems, taken at my entire soul. Disenador Gráfico y Digital y ademas como aprenderlas." },
+          { title: "Researching for the brand.", desc: "Confident, taken at my entire soul, which I love above. Disenador Gráfico y ademas." },
+          { title: "Documents developing & launch.", desc: "Confident, taken at my entire soul with heavy efforts. Disenador Gráfico y ademas." },
+        ].map((s, i) => (
+          <div key={i}>
+            <h3 className="text-xl font-bold mb-3">{s.title}</h3>
+            <p className="text-sm text-muted-foreground">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {/* Awards */}
+    <section className="container pb-24">
+      <div className="grid md:grid-cols-2 gap-12">
+        <div>
+          <p className="text-xs uppercase tracking-wider text-muted-foreground mb-3">Awards & Honors</p>
+          <h2 className="text-3xl md:text-4xl font-bold">The awards won<br />by our project.</h2>
+        </div>
+        <div>
+          <p className="text-sm text-muted-foreground mb-8">Our clients describe us as a product team which <strong className="text-foreground">creates amazing UI/UX experiences</strong>, by crafting top-notch user experience.</p>
+          <div className="grid grid-cols-3 gap-6">
+            {[
+              { name: "W.", caption: "5x Developer Award" },
+              { name: "W.", caption: "3x Site of the Day" },
+              { name: "FWA", caption: "5x Mobile of the Day" },
+              { name: "WEBBY", caption: "2x Best Website" },
+              { name: "WEBBY", caption: "3x Best Website" },
+            ].map((a, i) => (
+              <div key={i}>
+                <div className="text-2xl font-black mb-2">{a.name}</div>
+                <p className="text-xs text-muted-foreground">{a.caption}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Dark CTA */}
+    <section className="bg-dark text-white py-20">
+      <div className="container">
+        <p className="text-xs uppercase tracking-wider text-white/60 mb-4">Collaboration</p>
+        <div className="flex flex-wrap gap-6 justify-between items-start">
+          <h2 className="text-4xl md:text-5xl font-bold">Got a project?<br />Let's talk.</h2>
+          <Button asChild className="bg-primary hover:bg-primary/90 text-white rounded-md px-6 h-12">
+            <Link to="/contact">Contact Us <ArrowRight className="ml-2 h-4 w-4" /></Link>
+          </Button>
+        </div>
+        <div className="border-t border-white/20 mt-10 pt-6">
+          <p className="text-sm text-white/70 max-w-2xl">We're <strong className="text-white">a team of creatives</strong> who are excited about unique ideas and help fin-tech companies to <strong className="text-white">create amazing identity</strong> by crafting top-notch UI/UX.</p>
+        </div>
+      </div>
     </section>
   </>
 );
