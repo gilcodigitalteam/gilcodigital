@@ -42,7 +42,7 @@ const Contact = () => {
           <div>
             <h3 className="text-2xl font-bold mb-6">Get in touch</h3>
             <p className="font-bold">Work Inquiries</p>
-            <p className="font-bold mt-1">+1.604.256.9191</p>
+            <p className="font-bold mt-1">+5817814936</p>
             <p className="text-sm text-muted-foreground mt-6">Assistance hours:<br />Monday – Friday<br />9 am to 6 pm PST</p>
           </div>
           <div>
