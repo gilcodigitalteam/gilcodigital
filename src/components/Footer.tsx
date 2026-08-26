@@ -8,7 +8,7 @@ export const Footer = () => (
         <h4 className="font-bold mb-3">Fb. / Ig.</h4>
         <p className="font-bold mt-6">Inquiries</p>
         <p className="text-sm text-muted-foreground mt-3">Got a question for us?</p>
-        <p className="font-bold text-sm mt-1">Info@gilcodigital.com</p>
+        <a href="mailto:gilcodigitalteam@gmail.com" className="font-bold text-sm mt-1 block hover:text-primary">gilcodigitalteam@gmail.com</a>
       </div>
       <div>
         <h4 className="font-bold mb-3">Vancouver</h4>
