@@ -16,7 +16,7 @@ export const Footer = () => (
       <div>
         <h4 className="font-bold mb-3">Work inquiries</h4>
         <p className="text-sm text-muted-foreground">Interested in working with us?</p>
-        <p className="font-bold text-sm mt-1">info@gilcodigital.com</p>
+        <a href="mailto:gilcodigitalteam@gmail.com" className="font-bold text-sm mt-1 block hover:text-primary">gilcodigitalteam@gmail.com</a>
         <p className="font-bold mt-6">Career</p>
         <p className="text-sm text-muted-foreground mt-3">Looking for a job opportunity?</p>
         <p className="font-bold text-sm mt-1">See open positions</p>
