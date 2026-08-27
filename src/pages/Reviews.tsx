@@ -4,14 +4,14 @@ import { ArrowLeft, ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const summary = [
-  { stars: 5, count: 938 },
-  { stars: 4, count: 58 },
-  { stars: 3, count: 6 },
-  { stars: 2, count: 6 },
-  { stars: 1, count: 7 },
+  { stars: 5, count: 90 },
+  { stars: 4, count: 7 },
+  { stars: 3, count: 1 },
+  { stars: 2, count: 2 },
+  { stars: 1, count: 2 },
 ];
 
-const total = 1015;
+const total = 102;
 
 type Review = {
   client: string;
