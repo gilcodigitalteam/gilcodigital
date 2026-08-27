@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Star } from "lucide-react";
+import { ArrowLeft, ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const summary = [
@@ -12,13 +13,22 @@ const summary = [
 
 const total = 1015;
 
-const reviews = [
+type Review = {
+  client: string;
+  date: string;
+  quality: number;
+  communication: number;
+  text: string;
+  service: string;
+};
+
+const reviews: Review[] = [
   {
     client: "Pawfect Supplies",
     date: "Jul 14, 2026",
     quality: 5,
     communication: 5,
-    text: "This was the best interaction I've had so far that didn't leave me feeling like a scam was around the corner. I would definitely recommend this service.",
+    text: "This was the best interaction that I have had so far that wasn't constantly feeling like a scam was around the corner. I would definitely recommend this service.",
     service: "Store settings configuration",
   },
   {
@@ -26,42 +36,77 @@ const reviews = [
     date: "Mar 12, 2026",
     quality: 5,
     communication: 5,
-    text: "The team was fantastic to work with. They quickly identified the issue with our theme and fixed the age verification popup integration much faster than expected.",
-    service: "Theme troubleshooting",
+    text: "The team was fantastic to work with. They quickly identified the issue with our theme and fixed the age verification popup integration much faster than expected. Communication was clear and prompt throughout, and they went the extra mile on an additional issue at no extra charge.",
+    service: "Theme customization",
   },
   {
-    client: "Northline Coffee Co.",
-    date: "Feb 02, 2026",
+    client: "The Gumpii Apothecary",
+    date: "Mar 2, 2026",
     quality: 5,
     communication: 5,
-    text: "Clear communication from start to finish. Our new product pages load faster and conversions are noticeably up since launch.",
-    service: "Website UX/UI design",
+    text: "These guys are life savers! They did a magnificent job making our website a joy to navigate. Professional but still very personal — they are now our go-to for any further work we need done.",
+    service: "Store build or redesign",
   },
   {
-    client: "Studio Verde",
-    date: "Dec 18, 2025",
+    client: "KMT Depot",
+    date: "Jan 31, 2026",
+    quality: 5,
+    communication: 5,
+    text: "Very happy working with Gilco Digital. They were the first store partner to actually answer the phone when I called. They listened and recommended the best store redesign for the products I was selling.",
+    service: "Store build or redesign",
+  },
+  {
+    client: "Diesel Freak",
+    date: "Jan 17, 2026",
     quality: 5,
     communication: 4,
-    text: "Great design sense and very patient with our feedback rounds. The final brand kit exceeded what we asked for.",
-    service: "Brand strategy & art direction",
+    text: "Everything went very well. They did excellent work and we couldn't be happier — the website is performing very well. Thank you Gilco.",
+    service: "Store build or redesign",
   },
   {
-    client: "Harbour Fitness",
-    date: "Nov 05, 2025",
+    client: "Revol Cares",
+    date: "Oct 27, 2025",
     quality: 5,
     communication: 5,
-    text: "They handled the full migration without any downtime and documented everything for our internal team afterwards.",
-    service: "Store migration",
+    text: "",
+    service: "Store settings configuration",
   },
   {
-    client: "Lumen Home",
-    date: "Sep 21, 2025",
-    quality: 4,
+    client: "Know Better Pet Food",
+    date: "Oct 16, 2025",
+    quality: 5,
     communication: 5,
-    text: "Responsive, professional, and happy to explain the technical parts in plain language. We'll be back for phase two.",
-    service: "Content creation",
+    text: "Gilco Digital was excellent at incorporating a new app into our custom themed website. If we have any other issues, we'll be using them again. Great service and communication.",
+    service: "Custom apps and integrations",
+  },
+  {
+    client: "kinkskrown",
+    date: "Oct 13, 2025",
+    quality: 5,
+    communication: 5,
+    text: "Fast service with efficiency. I really recommend their services.",
+    service: "Store build or redesign",
+  },
+  {
+    client: "Fresh Fur Pets Online",
+    date: "Oct 13, 2025",
+    quality: 5,
+    communication: 5,
+    text: "Quality of work and prices are great. They are also very responsive.",
+    service: "Theme customization",
+  },
+  {
+    client: "Embody Her",
+    date: "Oct 11, 2025",
+    quality: 5,
+    communication: 5,
+    text: "Precision. Quality. Integrity. Gilco Digital turned my vision into a masterpiece, effortlessly and professionally.",
+    service: "Store build or redesign",
   },
 ];
+
+const PER_PAGE = 5;
+const pageCount = Math.ceil(reviews.length / PER_PAGE);
 
 const Stars = ({ value }: { value: number }) => (
   <span className="inline-flex items-center gap-0.5">
@@ -74,73 +119,114 @@ const Stars = ({ value }: { value: number }) => (
   </span>
 );
 
-const Reviews = () => (
-  <>
-    <section className="pt-32 pb-10">
-      <div className="container max-w-3xl">
-        <div className="text-sm text-muted-foreground mb-8">
-          <Link to="/" className="hover:text-primary">Home</Link> &gt;{" "}
-          <Link to="/about" className="hover:text-primary">About Us</Link> &gt; Reviews
-        </div>
+const Reviews = () => {
+  const [page, setPage] = useState(1);
+  const visible = reviews.slice((page - 1) * PER_PAGE, page * PER_PAGE);
 
-        <h1 className="text-3xl md:text-4xl font-bold flex items-center gap-3 mb-2">
-          Rating <Star className="h-6 w-6 fill-amber-400 text-amber-400" /> 4.9
-          <span className="text-muted-foreground font-normal">({total})</span>
-        </h1>
+  const go = (p: number) => {
+    setPage(p);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-        <h2 className="text-xl font-semibold mt-8 mb-2">Overall rating summary</h2>
-        <p className="text-sm text-muted-foreground mb-5">
-          Ratings based on <span className="underline">quality of work</span> and{" "}
-          <span className="underline">communication</span>
-        </p>
+  return (
+    <>
+      <section className="pt-32 pb-10">
+        <div className="container max-w-3xl">
+          <div className="text-sm text-muted-foreground mb-8">
+            <Link to="/" className="hover:text-primary">Home</Link> &gt;{" "}
+            <Link to="/about" className="hover:text-primary">About Us</Link> &gt; Reviews
+          </div>
 
-        <div className="space-y-2.5">
-          {summary.map((s) => (
-            <div key={s.stars} className="flex items-center gap-4">
-              <Stars value={s.stars} />
-              <div className="flex-1 h-2.5 rounded-full bg-secondary overflow-hidden">
-                <div
-                  className="h-full rounded-full bg-emerald-300"
-                  style={{ width: `${(s.count / total) * 100}%` }}
-                />
+          <h1 className="text-3xl md:text-4xl font-bold flex items-center gap-3 mb-2">
+            Rating <Star className="h-6 w-6 fill-amber-400 text-amber-400" /> 4.9
+            <span className="text-muted-foreground font-normal">({total})</span>
+          </h1>
+
+          <h2 className="text-xl font-semibold mt-8 mb-2">Overall rating summary</h2>
+          <p className="text-sm text-muted-foreground mb-5">
+            Ratings based on <span className="underline">quality of work</span> and{" "}
+            <span className="underline">communication</span>
+          </p>
+
+          <div className="space-y-2.5">
+            {summary.map((s) => (
+              <div key={s.stars} className="flex items-center gap-4">
+                <Stars value={s.stars} />
+                <div className="flex-1 h-2.5 rounded-full bg-secondary overflow-hidden">
+                  <div
+                    className="h-full rounded-full bg-emerald-300"
+                    style={{ width: `${(s.count / total) * 100}%` }}
+                  />
+                </div>
+                <span className="text-sm text-muted-foreground w-14 text-right">({s.count})</span>
               </div>
-              <span className="text-sm text-muted-foreground w-14 text-right">({s.count})</span>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          <h2 className="text-xl font-semibold mt-14 pt-10 border-t border-border mb-2">Reviews</h2>
+
+          <div className="divide-y divide-border">
+            {visible.map((r) => (
+              <article key={r.client} className="py-8">
+                <div className="flex flex-wrap justify-between items-baseline gap-2 mb-4">
+                  <h3 className="text-lg font-semibold">{r.client}</h3>
+                  <span className="text-sm text-muted-foreground">{r.date}</span>
+                </div>
+                <div className="grid grid-cols-[8rem_auto] gap-y-2 items-center mb-4 text-sm">
+                  <span className="text-muted-foreground">Quality of work</span>
+                  <span className="flex items-center gap-2"><Stars value={r.quality} /> {r.quality}</span>
+                  <span className="text-muted-foreground">Communication</span>
+                  <span className="flex items-center gap-2"><Stars value={r.communication} /> {r.communication}</span>
+                </div>
+                {r.text && <p className="text-base text-muted-foreground mb-3">{r.text}</p>}
+                <p className="text-sm text-muted-foreground">Service reviewed: {r.service}</p>
+              </article>
+            ))}
+          </div>
+
+          {/* Pagination */}
+          <nav className="flex items-center gap-4 pt-8 border-t border-border" aria-label="Reviews pagination">
+            <button
+              onClick={() => go(page - 1)}
+              disabled={page === 1}
+              aria-label="Previous page"
+              className="h-11 w-11 rounded-full bg-secondary text-muted-foreground flex items-center justify-center disabled:opacity-60 transition-colors hover:bg-secondary/70"
+            >
+              <ArrowLeft className="h-5 w-5" />
+            </button>
+            <select
+              value={page}
+              onChange={(e) => go(Number(e.target.value))}
+              aria-label="Page number"
+              className="h-11 rounded-md border border-border bg-background px-4 text-sm"
+            >
+              {Array.from({ length: pageCount }).map((_, i) => (
+                <option key={i} value={i + 1}>{i + 1}</option>
+              ))}
+            </select>
+            <span className="text-sm text-muted-foreground">/ {pageCount}</span>
+            <button
+              onClick={() => go(page + 1)}
+              disabled={page === pageCount}
+              aria-label="Next page"
+              className="h-11 w-11 rounded-full bg-dark text-white flex items-center justify-center disabled:opacity-60"
+            >
+              <ArrowRight className="h-5 w-5" />
+            </button>
+          </nav>
         </div>
+      </section>
 
-        <h2 className="text-xl font-semibold mt-14 pt-10 border-t border-border mb-2">Reviews</h2>
-
-        <div className="divide-y divide-border">
-          {reviews.map((r) => (
-            <article key={r.client} className="py-8">
-              <div className="flex flex-wrap justify-between items-baseline gap-2 mb-4">
-                <h3 className="text-lg font-semibold">{r.client}</h3>
-                <span className="text-sm text-muted-foreground">{r.date}</span>
-              </div>
-              <div className="grid grid-cols-[8rem_auto] gap-y-2 items-center mb-4 text-sm">
-                <span className="text-muted-foreground">Quality of work</span>
-                <span className="flex items-center gap-2"><Stars value={r.quality} /> {r.quality}</span>
-                <span className="text-muted-foreground">Communication</span>
-                <span className="flex items-center gap-2"><Stars value={r.communication} /> {r.communication}</span>
-              </div>
-              <p className="text-base text-muted-foreground mb-3">{r.text}</p>
-              <p className="text-sm text-muted-foreground">Service reviewed: {r.service}</p>
-            </article>
-          ))}
+      <section className="bg-dark text-white py-20">
+        <div className="container flex flex-wrap gap-6 justify-between items-center">
+          <h2 className="text-3xl md:text-4xl font-bold">Ready to join them?</h2>
+          <Button asChild className="bg-primary hover:bg-primary/90 text-white rounded-md px-6 h-12">
+            <Link to="/contact">Contact Us <ArrowRight className="ml-2 h-4 w-4" /></Link>
+          </Button>
         </div>
-      </div>
-    </section>
-
-    <section className="bg-dark text-white py-20">
-      <div className="container flex flex-wrap gap-6 justify-between items-center">
-        <h2 className="text-3xl md:text-4xl font-bold">Ready to join them?</h2>
-        <Button asChild className="bg-primary hover:bg-primary/90 text-white rounded-md px-6 h-12">
-          <Link to="/contact">Contact Us <ArrowRight className="ml-2 h-4 w-4" /></Link>
-        </Button>
-      </div>
-    </section>
-  </>
-);
+      </section>
+    </>
+  );
+};
 
 export default Reviews;
