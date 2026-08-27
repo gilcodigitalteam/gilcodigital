@@ -62,7 +62,9 @@ const About = () => (
         <div>
           <p className="text-xs uppercase tracking-wider text-white/60 mb-3">Testimonials</p>
           <h2 className="text-3xl md:text-4xl font-bold mb-8">What our clients say<br />about our studio.</h2>
-          <Button className="bg-primary hover:bg-primary/90 rounded-md">More Reviews <ArrowRight className="ml-2 h-4 w-4" /></Button>
+          <Button asChild className="bg-primary hover:bg-primary/90 rounded-md">
+            <Link to="/reviews">More Reviews <ArrowRight className="ml-2 h-4 w-4" /></Link>
+          </Button>
         </div>
         <div>
           <div className="flex items-center gap-3 mb-4">
