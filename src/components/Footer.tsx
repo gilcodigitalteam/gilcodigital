@@ -8,7 +8,7 @@ export const Footer = () => (
         <h4 className="font-bold mb-3">Fb. / Ig.</h4>
         <p className="font-bold mt-6">Inquiries</p>
         <p className="text-sm text-muted-foreground mt-3">Got a question for us?</p>
-        <a href="mailto:gilcodigitalteam@gmail.com" className="font-bold text-sm mt-1 block hover:text-primary">gilcodigitalteam@gmail.com</a>
+        <a href="mailto:info@gillcodigital.com" className="font-bold text-sm mt-1 block hover:text-primary">info@gillcodigital.com</a>
       </div>
       <div>
         <h4 className="font-bold mb-3">Vancouver</h4>
@@ -16,7 +16,7 @@ export const Footer = () => (
       <div>
         <h4 className="font-bold mb-3">Work inquiries</h4>
         <p className="text-sm text-muted-foreground">Interested in working with us?</p>
-        <a href="mailto:gilcodigitalteam@gmail.com" className="font-bold text-sm mt-1 block hover:text-primary">gilcodigitalteam@gmail.com</a>
+        <a href="mailto:info@gillcodigital.com" className="font-bold text-sm mt-1 block hover:text-primary">info@gillcodigital.com</a>
         <p className="font-bold mt-6">Career</p>
         <p className="text-sm text-muted-foreground mt-3">Looking for a job opportunity?</p>
         <p className="font-bold text-sm mt-1">See open positions</p>
