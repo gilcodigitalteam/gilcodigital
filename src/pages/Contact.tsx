@@ -32,7 +32,7 @@ const Contact = () => {
           <h1 className="text-5xl md:text-7xl font-bold mb-4">Contact Us</h1>
           <p className="mb-6 max-w-md">Leave us a little info, and we'll be in touch.</p>
           <Button asChild className="bg-primary hover:bg-primary/90 text-white rounded-md px-6 h-11 self-start">
-            <a href="mailto:gilcodigitalteam@gmail.com?subject=Project%20inquiry">Send Us an Email</a>
+            <a href="mailto:info@gillcodigital.com?subject=Project%20inquiry">Send Us an Email</a>
           </Button>
         </div>
       </section>
